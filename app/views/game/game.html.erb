@@ -1,0 +1,95 @@
+<section id="title">
+    <div class="container">
+        <div class="row 200%">
+            <div class="col-lg-6 col-lg-offset-3">
+            <pre class="text-center"><%= @title1%>
+<%= @title2%>
+<%= @title3%>
+- Memorize English words -</pre>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="body">
+    <div class="container">
+        <div class="row">
+            <div class="form-horizontal col-sm-8 col-sm-offset-2 text-center">
+                <fieldset style="border-top: 2px groove white; border-bottom: 2px groove white;">
+                <div class="form-group">
+                    <h3 for="hint" class="col-sm-3">Hint:</h3>
+                    <h3 id="hint" class="col-sm-9"><%= @hint%></h3>
+                </div>
+                <div class="form-group">
+                    <h2 for="result" class="col-sm-3">Result:</h2>
+                    <h2 id="result" class="col-sm-9"><%= @blank%> <span class="badge" style="font-size:20px"><%= @wordLength%></span></h2>
+                </div>
+                <br />
+                <div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <form class="form-inline" action="/game" method="post" id="inputGameData">
+                            <div class="form-group">
+                                <div class="input-group form-group-lg">
+                                  <input type="text" class="form-control" name="answer" placeholder="Input only 1 alphabet" maxlength="1" style="ime-mode:disabled; text-transform:lowercase;" autofocus required>
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-primary form-control" type="submit">Check!</button>
+                                  </span>
+                                </div>
+                            </div>
+                            <input type="hidden" name="hint" value="<%= @hint%>" />
+                            <input type="hidden" name="word" value="<%= @word%>" />
+                            <input type="hidden" name="blank" value="<%= @blank%>" />
+                        </form>
+                    </div>
+                </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="status">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <h3>Status</h3>
+                <div class="col-sm-3 text-center">
+                    Inputed Count: <span class="text-center" id="cnt"><%= @count%></span>
+                </div>
+                <div class="col-sm-9">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="min-width: 2.5em; width: <%= @progress%>%;">
+                            <%= @progress%>% Correct
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <%= link_to_if @progress==100, 'Re-game', controller: :game, action: :init, class: "btn btn-primary btn-lg"%>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        //현재 주소를 가져온다.
+        var renewURL = location.href;
+        //현재 주소 중 page 부분이 있다면 날려버린다.
+        renewURL = renewURL.replace(/\?.*/ig,'');
+        //페이지 갱신 실행!
+        history.pushState(null, null, renewURL);
+        
+        $("form").submit( function(eventObj) {
+            $('<input />').attr('type', 'hidden')
+                          .attr('name', 'cnt')
+                          .attr('value', $('#cnt').text())
+                          .appendTo(this);
+            return true;
+        });
+    });
+</script>
