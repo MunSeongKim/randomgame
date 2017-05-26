@@ -633,9 +633,9 @@ class GameController < ApplicationController
       	yield: '수확|항복|수율|수익|수익률'
     }
     
-    
-    hint = wordList.to_a.sample(1).to_h.values[0]
-    word = wordList.to_a.sample(1).to_h.keys[0]
+    selectWord = wordList.to_a.sample(1).to_h
+    hint = selectWord.values[0]
+    word = selectWord.keys[0]
     
     redirect_to :controller => 'game', :action => 'game', :hint => hint, :word => word, :cnt => -1
   end
