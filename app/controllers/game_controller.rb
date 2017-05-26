@@ -1,14 +1,14 @@
 class GameController < ApplicationController
   def index
-    @title1 = Artii::Base.new(font: 'standard').asciify('Wheel')
-    @title2 = Artii::Base.new(font: 'standard').asciify('of')
-    @title3 = Artii::Base.new(font: 'standard').asciify('Fortune!')
+    @title1 = Artii::Base.new(font: 'small').asciify('Wheel of Fortune!')
+    #@title2 = Artii::Base.new(font: 'small').asciify('of')
+    #@title3 = Artii::Base.new(font: 'small').asciify('Fortune!')
   end
   
   def game
-    @title1 = Artii::Base.new(font: 'standard').asciify('Wheel')
-    @title2 = Artii::Base.new(font: 'standard').asciify('of')
-    @title3 = Artii::Base.new(font: 'standard').asciify('Fortune!')
+    @title1 = Artii::Base.new(font: 'small').asciify('Wheel of Fortune!')
+    #@title2 = Artii::Base.new(font: 'small').asciify('of')
+    #@title3 = Artii::Base.new(font: 'small').asciify('Fortune!')
     
     if !params.equal?(nil)
       @hint = params[:hint]

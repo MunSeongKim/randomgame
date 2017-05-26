@@ -14,7 +14,6 @@
     <div class="container">
         <div class="row">
             <div class="form-horizontal col-sm-8 col-sm-offset-2 text-center">
-                <fieldset style="border-top: 2px groove white; border-bottom: 2px groove white;">
                 <div class="form-group">
                     <h3 for="hint" class="col-sm-3">Hint:</h3>
                     <h3 id="hint" class="col-sm-9"><%= @hint%></h3>
@@ -41,7 +40,6 @@
                         </form>
                     </div>
                 </div>
-                </fieldset>
             </div>
         </div>
     </div>
@@ -57,7 +55,7 @@
                 <div class="col-sm-9">
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="min-width: 2.5em; width: <%= @progress%>%;">
-                            <%= @progress%>% Correct
+                            <span id="percent"><%= @progress%></span>% Correct
                         </div>
                     </div>
                 </div>
@@ -68,8 +66,8 @@
 <section id="footer">
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
-                <%= link_to_if @progress==100, 'Re-game', controller: :game, action: :init, class: "btn btn-primary btn-lg"%>
+            <div class="col-sm-8 col-sm-offset-2 text-right">
+                <a href="/init" class="btn btn-danger">Regame</a>
             </div>
         </div>
     </div>
@@ -91,5 +89,6 @@
                           .appendTo(this);
             return true;
         });
+        
     });
 </script>
