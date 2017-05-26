@@ -633,7 +633,7 @@ class GameController < ApplicationController
       	yield: '수확|항복|수율|수익|수익률'
     }
     
-    selectWord = wordList.to_a.sample(1).to_h
+    selectWord = wordList.to_a.sample.to_h
     hint = selectWord.values[0]
     word = selectWord.keys[0]
     
